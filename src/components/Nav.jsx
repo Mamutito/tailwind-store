@@ -3,7 +3,7 @@ import NikeLogo from "../assets/nike-logo.svg?react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 const ROUTES = ["Home", "About", "Services", "Pricing", "Contact"];
-function Nav() {
+const Nav = () => {
   const [isMobileMenuShown, setIsMobileMenuShown] = useState(false);
   return (
     <nav className="flex flex-wrap items-center justify-between">
@@ -19,7 +19,7 @@ function Nav() {
       </button>
 
       <div
-        className={`${isMobileMenuShown ? "hidden" : ""} w-full lg:block lg:w-auto`}
+        className={`${!isMobileMenuShown ? "hidden" : ""} w-full lg:block lg:w-auto`}
       >
         <ul className="flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 text-left text-lg lg:flex-row lg:space-x-8 lg:border-none lg:bg-transparent">
           {ROUTES.map((route) => (
@@ -39,6 +39,6 @@ function Nav() {
       </div>
     </nav>
   );
-}
+};
 
 export default Nav;

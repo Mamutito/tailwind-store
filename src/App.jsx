@@ -1,11 +1,13 @@
 import "./App.css";
 import Nav from "./components/Nav";
+import ShoeDetail from "./components/ShoeDetail";
 
 function App() {
   return (
-    <div className="p-10 xl:px-20">
+    <main className="p-10 xl:px-20">
       <Nav />
-    </div>
+      <ShoeDetail />
+    </main>
   );
 }
 
