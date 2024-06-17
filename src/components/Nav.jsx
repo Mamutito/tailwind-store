@@ -32,7 +32,7 @@ const Nav = () => {
           ))}
         </ul>
       </div>
-      <div className="fixed bottom-4 left-4 z-10 lg:static lg:mr-8">
+      <div className="btn-press-anim fixed bottom-4 left-4 z-10 lg:static lg:mr-8">
         <div className="flex-center h-12 w-12 cursor-pointer rounded-full bg-white shadow-md">
           <TbShoppingBag />
         </div>
