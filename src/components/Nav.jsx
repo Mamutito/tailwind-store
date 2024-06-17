@@ -21,10 +21,10 @@ const Nav = () => {
       <div
         className={`${!isMobileMenuShown ? "hidden" : ""} w-full lg:block lg:w-auto`}
       >
-        <ul className="flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 text-left text-lg lg:flex-row lg:space-x-8 lg:border-none lg:bg-transparent">
-          {ROUTES.map((route) => (
+        <ul className="relative flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 text-left text-lg lg:flex-row lg:space-x-8 lg:border-none lg:bg-transparent">
+          {ROUTES.map((route, index) => (
             <li
-              className="cursor-pointer rounded px-3 py-2 first:bg-blue-500 first:text-white hover:bg-gray-100 first:hover:bg-blue-600 lg:first:bg-transparent lg:first:text-blue-500 lg:first:hover:bg-transparent"
+              className={`cursor-pointer rounded px-3 py-2 first:bg-blue-500 first:text-white hover:bg-gray-100 first:hover:bg-blue-600 lg:first:bg-transparent lg:first:text-blue-500 lg:hover:bg-transparent lg:hover:text-blue-500 ${index >= 3 && "lg:text-white"}`}
               key={route}
             >
               {route}
@@ -32,8 +32,8 @@ const Nav = () => {
           ))}
         </ul>
       </div>
-      <div className="fixed bottom-4 left-4 lg:static">
-        <div className="flex-center h-12 w-12 rounded-full bg-white shadow-md">
+      <div className="fixed bottom-4 left-4 z-10 lg:static lg:mr-8">
+        <div className="flex-center h-12 w-12 cursor-pointer rounded-full bg-white shadow-md">
           <TbShoppingBag />
         </div>
       </div>
