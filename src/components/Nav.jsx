@@ -3,7 +3,7 @@ import NikeLogo from "../assets/nike-logo.svg?react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 const ROUTES = ["Home", "About", "Services", "Pricing", "Contact"];
-const Nav = () => {
+const Nav = ({ onOpenSidebar }) => {
   const [isMobileMenuShown, setIsMobileMenuShown] = useState(false);
   return (
     <nav className="flex flex-wrap items-center justify-between">
@@ -19,7 +19,7 @@ const Nav = () => {
       </button>
 
       <div
-        className={`${!isMobileMenuShown ? "hidden" : ""} w-full lg:block lg:w-auto`}
+        className={`${!isMobileMenuShown ? "hidden" : ""} mb-4 w-full lg:block lg:w-auto`}
       >
         <ul className="relative flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 text-left text-lg lg:flex-row lg:space-x-8 lg:border-none lg:bg-transparent">
           {ROUTES.map((route, index) => (
@@ -32,7 +32,10 @@ const Nav = () => {
           ))}
         </ul>
       </div>
-      <div className="btn-press-anim fixed bottom-4 left-4 z-10 lg:static lg:mr-8">
+      <div
+        onClick={onOpenSidebar}
+        className="btn-press-anim fixed bottom-4 left-4 z-10 lg:static lg:mr-8"
+      >
         <div className="flex-center h-12 w-12 cursor-pointer rounded-full bg-white shadow-md">
           <TbShoppingBag />
         </div>
