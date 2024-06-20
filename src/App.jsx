@@ -5,7 +5,9 @@ import NewArrivalsSection from "./components/NewArrivalsSection";
 import ShoeDetail from "./components/ShoeDetail";
 import Sidebar from "./components/Sidebar";
 import { SHOE_LIST } from "./constants";
+import Cart from "./components/Cart";
 
+const FAKE_CART = SHOE_LIST.map((item) => ({ item, qty: 1, size: 44 }));
 function App() {
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
   return (
@@ -17,7 +19,7 @@ function App() {
         isOpen={isOpenSidebar}
         onCloseSidebar={() => setIsOpenSidebar(false)}
       >
-        Hola
+        <Cart cartItems={FAKE_CART} />
       </Sidebar>
     </main>
   );
