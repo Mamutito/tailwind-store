@@ -2,7 +2,7 @@ import { CiTrash } from "react-icons/ci";
 import Select from "./Select";
 import { QTY, SIZES } from "../constants";
 
-const CartItem = ({ item: { item, qty, size } }) => {
+const CartItem = ({ item: { item, qty, size }, onRemoveShoe }) => {
   return (
     <article className="cursor-pointer bg-gray-50 p-2 hover:bg-[#daffa2]">
       <div className="flex space-x-2">
@@ -17,23 +17,15 @@ const CartItem = ({ item: { item, qty, size } }) => {
         <div className="flex space-x-6">
           <div>
             <p className="font-bold">SIZE</p>
-            <Select
-              options={SIZES}
-              className="w-16 p-1 pl-2"
-              defaultValue={size}
-            />
+            <Select options={SIZES} className="w-16 p-1 pl-2" value={size} />
           </div>
           <div>
             <p className="font-bold">QTY</p>
-            <Select
-              options={QTY}
-              className="w-16 p-1 pl-2"
-              defaultValue={qty}
-            />
+            <Select options={QTY} className="w-16 p-1 pl-2" value={qty} />
           </div>
         </div>
 
-        <button>
+        <button onClick={() => onRemoveShoe(item.id)}>
           <CiTrash size={25} />
         </button>
       </div>

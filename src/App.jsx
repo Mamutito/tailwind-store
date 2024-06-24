@@ -7,19 +7,48 @@ import Sidebar from "./components/Sidebar";
 import { SHOE_LIST } from "./constants";
 import Cart from "./components/Cart";
 
-const FAKE_CART = SHOE_LIST.map((item) => ({ item, qty: 1, size: 44 }));
 function App() {
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+  const [currentShoe, setCurrentShoe] = useState(SHOE_LIST[0]);
+  const [cartItems, setCartItems] = useState([]);
+
+  const handleCurrentShoe = (shoe) => setCurrentShoe(shoe);
+  const handleAddShoe = (product, qty, size) => {
+    if (qty && size) {
+      const updatedCartItems = [...cartItems];
+      const existingIndex = updatedCartItems.findIndex(
+        (productShoe) => productShoe.item.id === product.id,
+      );
+      if (existingIndex > -1) {
+        updatedCartItems[existingIndex] = { item: product, qty, size };
+      } else {
+        updatedCartItems.push({ item: product, qty, size });
+      }
+      setCartItems(updatedCartItems);
+      setIsOpenSidebar(true);
+    }
+  };
+  const handleRemoveShoe = (id) => {
+    if (id) {
+      const updatedCartItems = cartItems.filter(
+        (productShoe) => productShoe.item.id !== id,
+      );
+      setCartItems(updatedCartItems);
+      if (!updatedCartItems.length) {
+        setIsOpenSidebar(false);
+      }
+    }
+  };
   return (
     <main className="animate-fadeIn p-10 xl:px-20">
       <Nav onOpenSidebar={() => setIsOpenSidebar(true)} />
-      <ShoeDetail />
-      <NewArrivalsSection items={SHOE_LIST} />
+      <ShoeDetail shoe={currentShoe} onAddShoe={handleAddShoe} />
+      <NewArrivalsSection items={SHOE_LIST} onShoeChange={handleCurrentShoe} />
       <Sidebar
         isOpen={isOpenSidebar}
         onCloseSidebar={() => setIsOpenSidebar(false)}
       >
-        <Cart cartItems={FAKE_CART} />
+        <Cart cartItems={cartItems} onRemoveShoe={handleRemoveShoe} />
       </Sidebar>
     </main>
   );
